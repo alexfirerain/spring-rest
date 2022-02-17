@@ -1,7 +1,6 @@
-package ru.netology.springrest.dto;
+package ru.netology.springrest.model;
 
 import org.springframework.validation.annotation.Validated;
-import ru.netology.springrest.model.Authorities;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class UserEntity {
     public UserEntity(String username, String password) {
         this.username = username;
         this.password = password;
-        authorities = new ArrayList<>();
+        authorities = new ArrayList<>(Authorities.values().length);
     }
 
     public boolean wordPasses(String password) {

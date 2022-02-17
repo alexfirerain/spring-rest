@@ -14,6 +14,11 @@ import ru.netology.springrest.exception.UnauthorizedUser;
 @RestControllerAdvice
 public class ExceptionsController {
 
+    /**
+     * Исключитель ситуации с неверными данными авторизации.
+     * @param ic возникшее исключение типа {@code InvalidCredentials}.
+     * @return  квалифицированную для http-ответа сущность.
+     */
     @ExceptionHandler(InvalidCredentials.class)
     public ResponseEntity<String> invalidCredentialsHandler(InvalidCredentials ic) {
         return ResponseEntity
@@ -21,6 +26,11 @@ public class ExceptionsController {
                 .body(ic.getLocalizedMessage());
     }
 
+    /**
+     * Исключитель ситуации с ненайденным юзером.
+     * @param ua возникшее исключение типа {@code UnauthorizedUser}.
+     * @return  квалифицированную для http-ответа сущность.
+     */
     @ExceptionHandler(UnauthorizedUser.class)
     public ResponseEntity<String> unauthorizedUserHandler(UnauthorizedUser ua) {
         System.out.println(ua.getLocalizedMessage());
@@ -29,6 +39,11 @@ public class ExceptionsController {
                 .body(ua.getLocalizedMessage());
     }
 
+    /**
+     * Исключитель ситуации с неверной структурой запроса.
+     * @param msrp возникшее исключение типа {@code MissingServletRequestParameterException}.
+     * @return  квалифицированную для http-ответа сущность.
+     */
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<String> missingServletRequestParameterHandler(MissingServletRequestParameterException msrp){
         return ResponseEntity

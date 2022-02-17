@@ -2,7 +2,7 @@ package ru.netology.springrest.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.netology.springrest.dto.UserEntity;
+import ru.netology.springrest.model.UserEntity;
 import ru.netology.springrest.exception.InvalidCredentials;
 import ru.netology.springrest.model.Authorities;
 
