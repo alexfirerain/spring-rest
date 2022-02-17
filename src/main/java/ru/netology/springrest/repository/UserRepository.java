@@ -2,22 +2,26 @@ package ru.netology.springrest.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.netology.springrest.dto.User;
+import ru.netology.springrest.dto.UserEntity;
 import ru.netology.springrest.exception.InvalidCredentials;
+import ru.netology.springrest.model.Authorities;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static ru.netology.springrest.repository.Authorities.*;
+import static ru.netology.springrest.model.Authorities.*;
 
+/**
+ * Южерохранилище.
+ */
 @Repository
 public class UserRepository {
-    public static final User DEMO_USER = new User("DemoUser", "password", List.of(READ, WRITE));
-    private final Map<String, User> users;
+    private static final UserEntity DEMO_USER = new UserEntity("DemoUser", "password", List.of(READ, WRITE));
+    private final Map<String, UserEntity> users;
 
-    public UserRepository(Map<String, User> users) {
+    public UserRepository(Map<String, UserEntity> users) {
         this.users = users;
     }
 
@@ -39,7 +43,7 @@ public class UserRepository {
      */
     public List<Authorities> getUserAuthorities(String user, String password) {
         List<Authorities> authorities = new ArrayList<>(Authorities.values().length);
-        User userEntity = users.get(user);
+        UserEntity userEntity = users.get(user);
         if (userEntity != null) {
             if (!userEntity.wordPasses(password))
                 throw new InvalidCredentials("Неверный пароль");
@@ -52,7 +56,7 @@ public class UserRepository {
      * Добавляет нового юзера в юзерохранилище (т.е. репозиторий).
      * @param user добавляемый юзер.
      */
-    public void addUser(User user) {
+    public void addUser(UserEntity user) {
         users.put(user.getUsername(), user);
     }
 

@@ -3,14 +3,21 @@ package ru.netology.springrest.service;
 import org.springframework.stereotype.Service;
 import ru.netology.springrest.exception.InvalidCredentials;
 import ru.netology.springrest.exception.UnauthorizedUser;
-import ru.netology.springrest.repository.Authorities;
+import ru.netology.springrest.model.Authorities;
 import ru.netology.springrest.repository.UserRepository;
 
 import java.util.List;
 
+/**
+ * Служба авторизации.
+ */
 @Service
 public class AuthorizationService {
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public AuthorizationService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     /**
      * Возвращает список разрешений для данной пары логин-пароль, если такой
@@ -50,3 +57,4 @@ public class AuthorizationService {
         return str == null || str.isEmpty();
     }
 }
+

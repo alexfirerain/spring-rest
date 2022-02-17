@@ -1,0 +1,25 @@
+### DemoUser requesting correctly
+GET http://localhost:8080/authorize?user=DemoUser&password=password
+Accept: application/json
+
+### DemoUser requesting mispassworded
+GET http://localhost:8080/authorize?user=DemoUser&password=wrongPassword
+Accept: application/json
+
+### WrongUser requesting
+GET http://localhost:8080/authorize?user=WrongUser&password=password
+Accept: application/json
+
+### requesting with empty name
+GET http://localhost:8080/authorize?user=&password=password
+Accept: application/json
+
+### requesting with empty password
+GET http://localhost:8080/authorize?user=WrongUser&password=
+Accept: application/json
+
+### requesting with no params
+GET http://localhost:8080/authorize
+Accept: application/json
+
+

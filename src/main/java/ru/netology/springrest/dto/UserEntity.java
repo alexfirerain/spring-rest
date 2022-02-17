@@ -1,27 +1,30 @@
 package ru.netology.springrest.dto;
 
 import org.springframework.validation.annotation.Validated;
-import ru.netology.springrest.repository.Authorities;
+import ru.netology.springrest.model.Authorities;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Представление юзера как структуры данных: имя, пароль, набор полномочий.
+ */
 @Validated
-public class User {
+public class UserEntity {
     @NotBlank
     private String username;
     @NotBlank
     private String password; // должен быть ByteChar[]
     private List<Authorities> authorities;
 
-    public User(String username, String password, List<Authorities> authorities) {
+    public UserEntity(String username, String password, List<Authorities> authorities) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
     }
 
-    public User(String username, String password) {
+    public UserEntity(String username, String password) {
         this.username = username;
         this.password = password;
         authorities = new ArrayList<>();

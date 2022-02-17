@@ -1,4 +1,4 @@
-package ru.netology.springrest.repository;
+package ru.netology.springrest.model;
 
 public enum Authorities {
     READ, WRITE, DELETE
