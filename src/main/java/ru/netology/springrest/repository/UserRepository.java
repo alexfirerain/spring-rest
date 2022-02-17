@@ -28,13 +28,13 @@ public class UserRepository {
     }
 
     /**
-     * Возвращает список разрешений для юзера, если такой юзер есть в базе, а
+     * Возвращает список полномочий для юзера, если такой юзер есть в базе, а
      * переданный пароль подошёл.
      * Если имени юзера нет в базе, возвращает пустой список.
      * Если юзер есть в базе, но переданный пароль не подходит, выбрасывает InvalidCredentials.
      * @param user     имя запрашиваемого юзера.
      * @param password  переданный пароль для запрашиваемого юзера.
-     * @return  список разрешений для авторизованного юзера.
+     * @return  список полномочий для авторизованного юзера.
      * @throws  InvalidCredentials  если переданный пароль не соответствует запрошенному имени.
      */
     public List<Authorities> getUserAuthorities(String user, String password) {
@@ -42,16 +42,24 @@ public class UserRepository {
         User userEntity = users.get(user);
         if (userEntity != null) {
             if (!userEntity.wordPasses(password))
-                throw new InvalidCredentials("Неверный пароль.");
+                throw new InvalidCredentials("Неверный пароль");
             authorities.addAll(userEntity.getAuthorities());
         }
         return authorities;
     }
-    
+
+    /**
+     * Добавляет нового юзера в юзерохранилище (т.е. репозиторий).
+     * @param user добавляемый юзер.
+     */
     public void addUser(User user) {
         users.put(user.getUsername(), user);
     }
-    
+
+    /**
+     * Удаляет указанного юзера из юзерохранилища (т.е. репозитория).
+     * @param username имя удаляемого юзера.
+     */
     public void deleteUser(String username) {
         users.remove(username);
     }

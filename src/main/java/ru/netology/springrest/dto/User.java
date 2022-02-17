@@ -1,12 +1,17 @@
 package ru.netology.springrest.dto;
 
+import org.springframework.validation.annotation.Validated;
 import ru.netology.springrest.repository.Authorities;
 
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
+@Validated
 public class User {
+    @NotBlank
     private String username;
+    @NotBlank
     private String password; // должен быть ByteChar[]
     private List<Authorities> authorities;
 
