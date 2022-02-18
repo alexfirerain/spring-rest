@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.netology.springrest.exception.InvalidCredentials;
 import ru.netology.springrest.exception.UnauthorizedUser;
 
+import javax.validation.ConstraintViolationException;
+
 /**
  * Обработчик исключений.
  */
@@ -51,4 +53,15 @@ public class ExceptionsController {
                 .body(msrp.getLocalizedMessage());
     }
 
+    /**
+     * Исключитель ситуации с непопаданием в ограничения валидации.
+     * @param cve возникшее исключение типа ConstraintViolationException.
+     * @return квалифицированную для http-запроса сущность.
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> constrainValidationHandler(ConstraintViolationException cve) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(cve.getLocalizedMessage());
+    }
 }
