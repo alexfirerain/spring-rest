@@ -59,7 +59,7 @@ public class WebConfig implements WebMvcConfigurer {
          */
         @Override
         public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-            String name = webRequest.getParameter("name");
+            String name = webRequest.getParameter("user");
             String password = webRequest.getParameter("password");
             return new User(name, password);
         }

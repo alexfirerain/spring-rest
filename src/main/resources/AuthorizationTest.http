@@ -25,3 +25,5 @@ Accept: application/json
 ### requesting with restriction mismatch
 GET http://localhost:8080/authorize?user=0&password=9
 
+### request out of range
+GET http://localhost:8080/wrongpage
