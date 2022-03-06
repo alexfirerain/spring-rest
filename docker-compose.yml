@@ -1,0 +1,6 @@
+version: "3.7"
+services:
+  spr1:
+    build: .
+    ports:
+      - "8084:8080"
